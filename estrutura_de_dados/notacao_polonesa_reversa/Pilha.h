@@ -1,5 +1,5 @@
 #include <iostream>
-#define N 10
+#define N 100
 
 using namespace std;
 
@@ -12,6 +12,7 @@ typedef struct pilha{
 	float info[N]; 
 	int n; 
 }Pilha;
+
 
 /************************************************************
 * Funcao    : criarPilha
@@ -120,25 +121,3 @@ float verTopo(Pilha* p){
 	return p->info[quantElementos]; 
 }
 
-// operadores = {"+", "-", "*", "/"};
-
-char* armazenaEmNotacaoPolonesaReversa(char exp[], Pilha *p) {
-	printf("tamanho de N: %d\n", p->n);
-
-    return exp;
-}
-
-
-
-int main() {
-	char exp[] = "2 * (3 + 4)"; // 3 4 + 2 *
-	char exp2[] = "2 * 3 + 4"; // 2 3 4 * +
-	
-	Pilha p;
-	p.n = 5;
-	
-	armazenaEmNotacaoPolonesaReversa(exp2, &p);
-	
-	printf("testing\n");
-	return 0;
-}
