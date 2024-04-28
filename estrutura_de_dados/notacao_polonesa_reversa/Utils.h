@@ -103,3 +103,7 @@ int getFirstIdxOccurrenceOfCharAfterIdx(char arr[], char c, int startIdx) {
     }
     return -1;
 }
+
+int getNumberOfOccurrencesOfChars() {
+    
+}

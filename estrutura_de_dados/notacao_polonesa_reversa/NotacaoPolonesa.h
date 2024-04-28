@@ -23,16 +23,27 @@ char* converteParaNotacaoPolonesa(char exp[]) {
         mostInternalRightParenthesisIdx = getFirstIdxOccurrenceOfCharAfterIdx(exp, ')', mostInternalLeftParenthesisIdx);
 
         if(mostInternalLeftParenthesisIdx != -1 && mostInternalRightParenthesisIdx != -1) {
-            newExp[0] = exp[mostInternalLeftParenthesisIdx + getFirstNumberIdx(exp, mostInternalLeftParenthesisIdx)];
-            newExp[3] = exp[mostInternalRightParenthesisIdx - getFirstNumberIdx(exp, mostInternalRightParenthesisIdx, true)];
+            // newExp[0] = exp[mostInternalLeftParenthesisIdx + getFirstNumberIdx(exp, mostInternalLeftParenthesisIdx)];
+            // newExp[2] = exp[mostInternalRightParenthesisIdx - getFirstNumberIdx(exp, mostInternalRightParenthesisIdx, true)];
 
-            int j = 4; 
-            for(int i = 4; exp[i] != '\0'; i++) {
-               if (i != mostInternalLeftParenthesisIdx && i != mostInternalRightParenthesisIdx) {
-                    newExp[j++] = exp[i]; 
+            operatorsQty = getNumberOfOccurrencesOfChars(
+                exp, 
+                mathOperators, 
+                mostInternalLeftParenthesisIdx, 
+                mostInternalRightParenthesisIdx
+            )
+
+            char[] operators[operatorsQty]
+            char[] numbers[operatorsQty + 1] // a quantidade de números é sempre (quantidade de operadores + 1).
+
+            for(int i = mostInternalLeftParenthesisIdx; i <= mostInternalRightParenthesisIdx; i++) {
+               if(exp[i] == ' ') continue;
+               bool isOperator = containsChar(mathOperators, mathOperatorsSize, exp[i]);
+
+               if(isOperator) {
+
                }
             }
-            newExp[4] = '\0'; 
 
             return converteParaNotacaoPolonesa(newExp);
         }
