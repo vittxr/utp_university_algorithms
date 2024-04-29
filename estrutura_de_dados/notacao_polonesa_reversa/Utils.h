@@ -33,16 +33,16 @@ char* type(const T& variable) {
 /************************************************************
 * Funcao    : getFirstNumberIdx
 * Descricao : retorna o primeiro index de um número dentro de uma string. Retorna -1 se nenhum número for encontrado.
-* Parametros: 1. char arr[]
+* Parametros: 1. char str[]
               2. int startIdx - o indice inicial do algoritmo de procura (search)
 * Retorno   : int - o index do primeiro número da string.
 /************************************************************/
-int getFirstNumberIdx(char arr[], int startIdx = 0, bool reverseSearch = false) {
+int getFirstNumberIdx(char str[], int startIdx = 0, bool reverseSearch = false) {
     
-    for (int i = startIdx; arr[i] != '\0';) {
-        if(arr[i] == ' ') continue;
+    for (int i = startIdx; str[i] != '\0';) {
+        if(str[i] == ' ') continue;
 
-        if(isdigit(arr[i])) {
+        if(isdigit(str[i])) {
             return i;
         }
 
@@ -60,17 +60,17 @@ int getFirstNumberIdx(char arr[], int startIdx = 0, bool reverseSearch = false) 
 /************************************************************
 * Funcao    : getLastNumberIdx
 * Descricao : retorna o último index de um número dentro de uma string. Retorna -1 se nenhum número for encontrado.
-* Parametros: 1. char arr[]
+* Parametros: 1. char str[]
               2. int startIdx - o indice inicial do algoritmo de procura (search)
 * Retorno   : int - o index do último número da string.
 /************************************************************/
-int getLastNumberIdx(char arr[], int startIdx = 0) {
+int getLastNumberIdx(char str[], int startIdx = 0) {
     int lastNumberIdx = 0;
 
-    for (int i = startIdx; arr[i] != '\0'; i++) {
-        if(arr[i] == ' ') continue;
+    for (int i = startIdx; str[i] != '\0'; i++) {
+        if(str[i] == ' ') continue;
 
-        if(isdigit(arr[i])) {
+        if(isdigit(str[i])) {
             lastNumberIdx = i; 
         }
     }
@@ -81,23 +81,23 @@ int getLastNumberIdx(char arr[], int startIdx = 0) {
 /************************************************************
 * Funcao    : getCharIdx
 * Descricao : retorna o index do charactere mais interno da string. Retorna -1 se o charactere não for encontrado.
-* Parametros: 1. char arr[]
+* Parametros: 1. char str[]
               2. char c
 * Retorno   : int - index do charactere mais interno da string.
 /************************************************************/
-int getLastIdxOccurrenceOfChar(char arr[], char c) {
+int getLastIdxOccurrenceOfChar(char str[], char c) {
     int res = -1;
-    for (int i = 0; arr[i] != '\0'; i++) {
-        if(arr[i] == c) {
+    for (int i = 0; str[i] != '\0'; i++) {
+        if(str[i] == c) {
             res = i;
         }
     }
     return res;
 } 
 
-int getFirstIdxOccurrenceOfCharAfterIdx(char arr[], char c, int startIdx) {
-    for(int i = startIdx; arr[i] != '\0'; i++) {
-        if(arr[i] == c) {
+int getFirstIdxOccurrenceOfCharAfterIdx(char str[], char c, int startIdx) {
+    for(int i = startIdx; str[i] != '\0'; i++) {
+        if(str[i] == c) {
             return i;
         }
     }
@@ -115,3 +115,16 @@ int getNumberOfOccurrencesOfChars(char sourceArr[], const char* charsToFind, int
 
     return n;
  }
+
+void trimRightWhitespace(char* str) {
+    int len = strlen(str);
+    int endIdx = len - 1;
+
+    // Find the index of the last non-whitespace character
+    while (endIdx >= 0 && std::isspace(str[endIdx])) {
+        endIdx--;
+    }
+
+    // Update the array to remove trailing whitespace
+    str[endIdx + 1] = '\0';
+}
