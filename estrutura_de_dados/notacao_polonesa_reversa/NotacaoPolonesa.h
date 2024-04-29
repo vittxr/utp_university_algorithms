@@ -23,27 +23,59 @@ char* converteParaNotacaoPolonesa(char exp[]) {
         mostInternalRightParenthesisIdx = getFirstIdxOccurrenceOfCharAfterIdx(exp, ')', mostInternalLeftParenthesisIdx);
 
         if(mostInternalLeftParenthesisIdx != -1 && mostInternalRightParenthesisIdx != -1) {
-            // newExp[0] = exp[mostInternalLeftParenthesisIdx + getFirstNumberIdx(exp, mostInternalLeftParenthesisIdx)];
-            // newExp[2] = exp[mostInternalRightParenthesisIdx - getFirstNumberIdx(exp, mostInternalRightParenthesisIdx, true)];
-
-            operatorsQty = getNumberOfOccurrencesOfChars(
+            int operatorsQty = getNumberOfOccurrencesOfChars(
                 exp, 
                 mathOperators, 
+                mathOperatorsSize,
                 mostInternalLeftParenthesisIdx, 
                 mostInternalRightParenthesisIdx
-            )
+            );
+            char operators[operatorsQty];
+            char numbers[operatorsQty + 1]; // a quantidade de números é sempre (quantidade de operadores + 1).
+            int operatorsIdx = 0; 
+            int numbersIdx = 0;
 
-            char[] operators[operatorsQty]
-            char[] numbers[operatorsQty + 1] // a quantidade de números é sempre (quantidade de operadores + 1).
-
-            for(int i = mostInternalLeftParenthesisIdx; i <= mostInternalRightParenthesisIdx; i++) {
+            // resolve parênteses mais internos.
+            for(int i = mostInternalLeftParenthesisIdx + 1; i <= mostInternalRightParenthesisIdx - 1; i++) {
                if(exp[i] == ' ') continue;
                bool isOperator = containsChar(mathOperators, mathOperatorsSize, exp[i]);
 
                if(isOperator) {
-
+                 operators[operatorsIdx] = exp[i];
+                 operatorsIdx++;
+               } else {
+                 numbers[numbersIdx] = exp[i];
+                 numbersIdx++;
                }
             }
+
+            // faz-se a nova expressão: 
+            int j = 0;
+            for(int i = 0; i <= operatorsQty + 1; i++) { 
+                if(i % 2 != 0) {
+                    newExp[i] = ' ';
+                } else {
+                    newExp[i] = numbers[j];
+                    j++;
+                }
+            }
+
+            for(int i = j + 1, k = 0; k <= operatorsQty; i++, j++) { 
+                if(i % 2 != 0) {
+                    newExp[i] = ' ';
+                } else {
+                    newExp[i] = operators[k]; 
+                    k++;
+                }
+            }
+
+            for(int i = 0; exp[i] != '\0'; i++) { 
+                if(i < mostInternalLeftParenthesisIdx && i > mostInternalRightParenthesisIdx) {
+                    newExp[j] = exp[i];
+                    j++;
+                }
+            }
+
 
             return converteParaNotacaoPolonesa(newExp);
         }

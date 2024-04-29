@@ -80,10 +80,10 @@ int getLastNumberIdx(char arr[], int startIdx = 0) {
 
 /************************************************************
 * Funcao    : getCharIdx
-* Descricao : retorna o index do charactere mais interno do array. Retorna -1 se o charactere não for encontrado.
+* Descricao : retorna o index do charactere mais interno da string. Retorna -1 se o charactere não for encontrado.
 * Parametros: 1. char arr[]
               2. char c
-* Retorno   : int - index do charactere mais interno do array.
+* Retorno   : int - index do charactere mais interno da string.
 /************************************************************/
 int getLastIdxOccurrenceOfChar(char arr[], char c) {
     int res = -1;
@@ -104,6 +104,14 @@ int getFirstIdxOccurrenceOfCharAfterIdx(char arr[], char c, int startIdx) {
     return -1;
 }
 
-int getNumberOfOccurrencesOfChars() {
-    
-}
+int getNumberOfOccurrencesOfChars(char sourceArr[], const char* charsToFind, int charsToFindSize, int startIdx, int endIdx) {
+    int n = 0;
+
+    for(int i = startIdx; i <= endIdx; i++) {
+        if(containsChar(charsToFind, charsToFindSize, sourceArr[i])) {
+            n++;
+        }
+    }
+
+    return n;
+ }
