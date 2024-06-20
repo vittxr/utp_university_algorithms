@@ -229,8 +229,8 @@ void main() {
     */
     imprimePilha(topo);
 
-	/*
-		Para a execução 
-	*/
-	system("pause");
+    /*
+      Para a execução 
+    */
+    system("pause");
 }
