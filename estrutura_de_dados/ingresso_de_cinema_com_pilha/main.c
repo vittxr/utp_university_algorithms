@@ -107,7 +107,7 @@ void imprimePilha(Ingresso *topo) {
     }
 }
 
-void main() {
+int main() {
     Pessoa *frente = NULL, *tras = NULL;
     Ingresso *topo = NULL;
     
