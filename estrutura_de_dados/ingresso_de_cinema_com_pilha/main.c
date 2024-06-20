@@ -228,4 +228,9 @@ void main() {
         Inception
     */
     imprimePilha(topo);
+
+	/*
+		Para a execução 
+	*/
+	system("pause");
 }
